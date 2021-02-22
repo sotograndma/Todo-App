@@ -38,7 +38,7 @@ struct SettingsView: View {
           .listStyle(GroupedListStyle())
           .environment(\.horizontalSizeClass, .regular)
           
-          Text("Copyright Allrights reserved.\nbetter Apps less code")
+          Text("Copyright © Allrights reserved.\nbetter Apps ♡ less code")
             .multilineTextAlignment(.center)
             .font(.footnote)
             .padding(.top, 6)

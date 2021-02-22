@@ -14,6 +14,8 @@ struct ContentView: View {
   @FetchRequest(entity: Todo.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Todo.name, ascending: true)]) var todos: FetchedResults<Todo>
     
     @State private var showingAddTodoView: Bool = false
+  @State private var showingSettingsView: Bool = false
+  
     var body: some View {
         NavigationView{
           ZStack {
@@ -37,10 +39,11 @@ struct ContentView: View {
                                           self.showingAddTodoView.toggle()
                                           
                                       }){
-                                          Image(systemName: "plus")
+                                          Image(systemName: "paintbrush")
+                                            .imageScale(.large)
                                       }
                                       .sheet(isPresented: $showingAddTodoView){
-                                        AddTodoView().environment(\.managedObjectContext, self.managedObjectContext)
+                                        SettingsView()
                                       }
                                       )
             if todos.count == 0{
