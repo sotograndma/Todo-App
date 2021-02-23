@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var showingAddTodoView: Bool = false
   @State private var showingSettingsView: Bool = false
   
+  @EnvironmentObject var iconSettings: IconNames
+  
     var body: some View {
         NavigationView{
           ZStack {
@@ -43,7 +45,7 @@ struct ContentView: View {
                                             .imageScale(.large)
                                       }
                                       .sheet(isPresented: $showingAddTodoView){
-                                        SettingsView()
+                                        SettingsView().environmentObject(self.iconSettings)
                                       }
                                       )
             if todos.count == 0{
