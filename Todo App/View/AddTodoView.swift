@@ -21,6 +21,9 @@ struct AddTodoView: View {
   @State private var errorTitle: String = ""
   @State private var errorMessage: String = ""
   
+  @ObservedObject var theme = ThemeSettings.shared
+  var themes: [Theme] = themeData
+  
   var body: some View {
     NavigationView{
       VStack{
@@ -63,7 +66,7 @@ struct AddTodoView: View {
               .font(.system(size: 24, weight: .bold, design: .default))
               .padding()
               .frame(minWidth: 0, maxWidth: .infinity)
-              .background(Color.blue)
+              .background(themes[self.theme.themeSettings].themeColor)
               .cornerRadius(9)
               .foregroundColor(Color.white)
           }
@@ -83,6 +86,9 @@ struct AddTodoView: View {
         Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
       }
     }
+    
+    .accentColor(themes[self.theme.themeSettings].themeColor)
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 
